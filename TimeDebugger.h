@@ -36,7 +36,7 @@ namespace labbish {
 
 		class TimeDebugger {
 		public:
-			std::chrono::steady_clock::time_point start, end;
+			std::chrono::high_resolution_clock::time_point start, end;
 			inline TimeDebugger() {
 				start = end = std::chrono::high_resolution_clock::now();
 			}
