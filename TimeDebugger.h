@@ -34,18 +34,25 @@ namespace labbish::message {
 	};
 
 	class TimeDebugger {
-	public:
 		std::chrono::high_resolution_clock::time_point start, end;
+		double cost;
+	public:
 		inline TimeDebugger() {
 			start = end = std::chrono::high_resolution_clock::now();
+			cost = 0;
 		}
 		inline void flush() {
 			start = end = std::chrono::high_resolution_clock::now();
+			cost = 0;
 		}
 		inline void debug() {
 			end = std::chrono::high_resolution_clock::now();
-			TimeMsg() << (long double)std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000;
+			cost = (double)std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000;
+			TimeMsg() << cost;
 			start = end;
+		}
+		inline double previousCost() {
+			return cost;
 		}
 	};
 }
