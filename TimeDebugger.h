@@ -17,15 +17,15 @@ namespace labbish::message {
 		class TimeBuf : public std::streambuf {
 		public:
 			inline void setColor() {
-				std::cerr << "\033[32m[TIME] Command Time Cost: ";
+				std::clog << "\033[32m[TIME] Command Time Cost: ";
 			}
 
 			inline void resetColor() {
-				std::cerr << "ms. \033[0m\n";
+				std::clog << "ms. \033[0m\n";
 			}
 			inline int overflow(int c) override {
 				if (c != EOF) {
-					std::cerr.put(c);
+					std::clog.put(c);
 				}
 				return c;
 			}
